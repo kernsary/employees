@@ -44,13 +44,38 @@ public class DirectorTest {
     }
 
     @Test
+    public void canChangeName(){
+        director1.changeName("Zoe Nic Phail");
+        assertEquals("Zoe Nic Phail", director1.getName());
+    }
+
+    @Test
+    public void cannotChangeNameToEmptyString(){
+        director1.changeName("");
+        assertEquals("Zoe McPhail", director1.getName());
+    }
+
+    @Test
+    public void cannotChangeNameToNull(){
+        director1.changeName(null);
+        assertEquals("Zoe McPhail", director1.getName());
+    }
+
+    @Test
     public void canRaiseSalary(){
         director1.raiseSalary(2000.00);
         assertEquals(42000.00, director1.getSalary(), 0.01);
     }
 
     @Test
-    public void canPayBonus(){
-        assertEquals(400, director1.payBonus(), 0.01);
+    public void cannotChangeSalaryIfNegativeIncrement(){
+        director1.raiseSalary(-2000.00);
+        assertEquals(40000.00, director1.getSalary(), 0.01);
     }
+
+    @Test
+    public void canPayBonus(){
+        assertEquals(800, director1.payBonus(), 0.01);
+    }
+
 }
